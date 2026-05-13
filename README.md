@@ -1,21 +1,40 @@
-# Django Shop
+<div align="center">
 
-A product catalog web application built with Django. Browse products by category, view detailed product pages, and manage inventory through the Django admin panel.
+# 🛍️ Django Shop
+
+**A clean product catalog built with Django — browse by category, view product details, and manage everything via the admin panel.**
+
+[![Python](https://img.shields.io/badge/Python-3.10%2B-3776AB?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
+[![Django](https://img.shields.io/badge/Django-6.0.3-092E20?style=flat-square&logo=django&logoColor=white)](https://www.djangoproject.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
+
+</div>
+
+---
+
+## Overview
+
+Django Shop is a lightweight e-commerce catalog application. It lets you organise products into categories, upload product images, and manage the full inventory through Django's built-in admin interface — all with clean, slug-based URLs.
 
 ## Features
 
-- Product catalog with category filtering
-- Product detail pages with related products
-- Image uploads via Pillow
-- Django admin panel with inline editing
-- Slug-based SEO-friendly URLs
+| Feature | Description |
+|---|---|
+| Category filtering | Browse products by category with dedicated pages |
+| Product detail pages | Full product info with related products from the same category |
+| Image uploads | Product images stored via Pillow with date-based folder structure |
+| Admin panel | Inline price/availability editing, filters, prepopulated slugs |
+| SEO-friendly URLs | Slug-based routing for categories and products |
+| Secure config | Secrets loaded from `.env` via `python-decouple` — never hardcoded |
 
 ## Tech Stack
 
-- **Backend:** Django 6.0.3
-- **Database:** SQLite (development)
-- **Image processing:** Pillow 12.1.1
-- **Config management:** python-decouple
+- **Framework** — Django 6.0.3
+- **Language** — Python 3.10+
+- **Database** — SQLite *(development)* — swappable via `DATABASES` setting
+- **Images** — Pillow 12.1.1
+- **Config** — python-decouple
+- **Frontend** — Bootstrap 5.1.3 + Bootstrap Icons
 
 ## Getting Started
 
@@ -27,71 +46,81 @@ A product catalog web application built with Django. Browse products by category
 ### Installation
 
 ```bash
-# Clone the repository
-git clone https://github.com/Rinat5x30/shop.git
-cd shop
+# 1. Clone the repository
+git clone https://github.com/Rinat5x30/shop-s6ptember.git
+cd shop-s6ptember
 
-# Create and activate a virtual environment
+# 2. Create and activate a virtual environment
 python -m venv venv
 venv\Scripts\activate        # Windows
-# source venv/bin/activate   # macOS / Linux
+source venv/bin/activate     # macOS / Linux
 
-# Install dependencies
+# 3. Install dependencies
 pip install -r requirements.txt
 
-# Set up environment variables
+# 4. Configure environment variables
 cp .env.example .env
-# Edit .env and set your own SECRET_KEY
+# Open .env and set your own SECRET_KEY
 
-# Apply migrations
+# 5. Apply database migrations
 python manage.py migrate
 
-# Create a superuser
+# 6. Create an admin superuser
 python manage.py createsuperuser
 
-# Run the development server
+# 7. Start the development server
 python manage.py runserver
 ```
 
-Open [http://127.0.0.1:8000](http://127.0.0.1:8000) in your browser.
+Open **http://127.0.0.1:8000** in your browser.
 
 ## Environment Variables
 
-Copy `.env.example` to `.env` and fill in the values:
+Copy `.env.example` to `.env` and set the following:
 
-| Variable        | Description                        | Default      |
-|-----------------|------------------------------------|--------------|
-| `SECRET_KEY`    | Django secret key                  | **required** |
-| `DEBUG`         | Debug mode (`True` / `False`)      | `False`      |
-| `ALLOWED_HOSTS` | Comma-separated list of hosts      | `localhost`  |
+| Variable | Description | Default |
+|---|---|---|
+| `SECRET_KEY` | Django secret key | **required** |
+| `DEBUG` | Enable debug mode | `False` |
+| `ALLOWED_HOSTS` | Comma-separated list of allowed hosts | `localhost` |
+
+> **Never commit `.env`** — it is listed in `.gitignore`. Use `.env.example` as the reference template.
 
 ## Project Structure
 
 ```
 shop/
-├── main/               # Products & categories app
-│   ├── models.py       # Category, Product models
-│   ├── views.py        # product_list, product_detail views
-│   ├── admin.py        # Admin configuration
-│   ├── urls.py         # App URL patterns
+├── main/                       # Core app — products & categories
+│   ├── models.py               # Category, Product
+│   ├── views.py                # product_list, product_detail
+│   ├── admin.py                # Admin with inline editing
+│   ├── urls.py                 # App-level URL patterns
+│   ├── migrations/
 │   └── templates/
 │       └── main/
-│           ├── base.html
+│           ├── base.html       # Bootstrap layout, nav, footer
 │           └── product/
-│               ├── list.html
-│               └── detail.html
-├── shop/               # Project config
+│               ├── list.html   # Product grid with category filter
+│               └── detail.html # Product page with related items
+├── shop/                       # Project configuration
 │   ├── settings.py
-│   └── urls.py
-├── .env.example
+│   ├── urls.py
+│   ├── wsgi.py
+│   └── asgi.py
+├── .env.example                # Environment variable template
 ├── manage.py
 └── requirements.txt
 ```
 
 ## Admin Panel
 
-Navigate to [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin) and log in with your superuser credentials to manage categories and products.
+Go to **http://127.0.0.1:8000/admin** and log in with your superuser credentials.
+
+From the admin you can:
+- Create and manage **categories** (slugs are auto-generated from the name)
+- Add **products** with images, price, description, and availability
+- Edit price and availability directly from the product list view
 
 ## License
 
-This project is open-source and available under the [MIT License](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
