@@ -1,10 +1,60 @@
-venv/
-.pylintrc
-__pycache
-    
-.vscode
-.idea
-.env
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+eggs/
+parts/
+var/
+sdist/
+develop-eggs/
+.installed.cfg
+lib/
+lib64/
 
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Django
+*.log
+local_settings.py
 db.sqlite3
+db.sqlite3-journal
 media/
+staticfiles/
+static_root/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# IDE / editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.pylintrc
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Coverage
+.coverage
+htmlcov/
+.tox/
+.pytest_cache/
+
+# Migrations (optional — remove these lines if you want to commit migrations)
+# */migrations/*.py
+# !*/migrations/__init__.py
